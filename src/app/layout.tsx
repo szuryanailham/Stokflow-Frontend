@@ -1,6 +1,5 @@
 import "./globals.css";
 import Providers from "./providers";
-
 export const metadata = {
   title: "My App",
   description: "Authentication example with Next.js 15, TanStack Query, and Axios",

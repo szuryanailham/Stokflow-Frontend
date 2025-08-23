@@ -16,6 +16,5 @@ export default function Protected({ children }: { children: React.ReactNode }) {
 
   if (isLoading) return <p>Loading...</p>;
   if (!user) return null;
-
   return <>{children}</>;
 }

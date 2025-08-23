@@ -1,21 +1,7 @@
 "use client";
-import {
-  Typography,
-  Box,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import Logo from "../assets/logo";
-import {
-  Dashboard,
-  Logout,
-  Settings,
-  ShoppingBag,
-  ShoppingCart,
-  ShowChart,
-} from "@mui/icons-material";
+import { Typography, Box, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import Logo from "@/assets/logo";
+import { Dashboard, Logout, Settings, ShoppingBag, ShoppingCart, ShowChart } from "@mui/icons-material";
 
 export default function Sidebar() {
   const navigations = [
@@ -106,13 +92,7 @@ export default function Sidebar() {
             }}
           >
             <ListItemIcon sx={{ minWidth: 36 }}>{nav.icon}</ListItemIcon>
-            <ListItemText
-              primary={
-                <Typography fontWeight={nav.active ? 600 : 400}>
-                  {nav.label}
-                </Typography>
-              }
-            />
+            <ListItemText primary={<Typography fontWeight={nav.active ? 600 : 400}>{nav.label}</Typography>} />
           </ListItemButton>
         ))}
       </List>
