@@ -2,8 +2,11 @@
 import { Typography, Box, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import Logo from "@/assets/logo";
 import { Dashboard, Logout, Settings, ShoppingBag, ShoppingCart, ShowChart } from "@mui/icons-material";
+import { useLogout } from "@/hooks/useAuth";
 
 export default function Sidebar() {
+  const logoutMutation = useLogout();
+
   const navigations = [
     {
       label: "Dashboard",
@@ -42,6 +45,7 @@ export default function Sidebar() {
       icon: <Logout />,
     },
   ];
+
   return (
     <Box
       component="aside"
@@ -54,6 +58,7 @@ export default function Sidebar() {
         background: "white",
       }}
     >
+      {/* Logo & title */}
       <Box display="flex" alignItems="center" width="100%" gap={1} mb={2}>
         <Logo className="size-10" />
         <Typography
@@ -67,18 +72,23 @@ export default function Sidebar() {
           Stockflow
         </Typography>
       </Box>
+
+      {/* Navigation */}
       <List sx={{ width: "100%" }}>
         {navigations.map((nav) => (
           <ListItemButton
             key={nav.label}
             selected={nav.active}
+            onClick={
+              () => (nav.label === "Logout" ? logoutMutation.mutate() : (window.location.href = nav.link)) // atau pakai Next.js router.push(nav.link)
+            }
             sx={{
               borderRadius: 2,
               mb: 1,
               px: 2,
               py: 1.5,
               "&.Mui-selected": {
-                bgcolor: "#635BFF", // purple background for active
+                bgcolor: "#635BFF",
                 color: "white",
                 "& .MuiSvgIcon-root": { color: "white" },
                 "&:hover": { bgcolor: "#5146d8" },

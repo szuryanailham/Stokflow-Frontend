@@ -1,24 +1,19 @@
 "use client";
 
 import { Avatar, Box, Typography } from "@mui/material";
+import { HeaderProfileProps } from "@/types/header/HeaderProfileProps";
 
-export default function HeaderProfile() {
+export default function HeaderProfile({ name, role, avatarUrl }: HeaderProfileProps) {
   return (
     <Box display="flex" alignItems="center" gap={2}>
-      {/* Profile picture */}
-      <Avatar
-        src="https://placehold.co/400x400.webp" // replace with your image path
-        alt="Musfiq"
-        sx={{ width: 54, height: 54, borderRadius: 3 }} // rounded-square
-      />
+      <Avatar src={avatarUrl || "https://placehold.co/400x400.webp"} alt={name} sx={{ width: 54, height: 54, borderRadius: 3 }} />
 
-      {/* Name + Role */}
       <Box>
         <Typography variant="subtitle1" fontWeight={700} color="text.primary">
-          Musfiq
+          {name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Admin
+          {role}
         </Typography>
       </Box>
     </Box>
