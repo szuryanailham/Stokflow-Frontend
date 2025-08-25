@@ -1,25 +1,30 @@
+// TypeScript interfaces
 export interface Transaction {
   id: number;
   transactionCode: string;
-  transactionType: string;
+  transactionType: "PURCHASE" | "SALE";
   totalAmount: string;
   transactionDate: string;
   buyerSellerName: string;
-  notes: string;
+  notes?: string;
   userId: number;
   createdAt: string;
   updatedAt: string;
   isDeleted: boolean;
 }
 
-export interface Pagination {
-  limit: number;
-  offset: number;
+export interface TransactionsData {
+  totalTransactions: number;
+  totalRevenue: string;
+  transactions: Transaction[];
 }
 
 export interface TransactionResponse {
   data: {
-    transactions: Transaction[];
-    pagination: Pagination;
+    transactions: TransactionsData;
+    pagination: {
+      limit: number;
+      offset: number;
+    };
   };
 }

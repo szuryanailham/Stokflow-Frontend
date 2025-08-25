@@ -17,9 +17,7 @@ export default function TabelTransaction() {
 
   const { data, isLoading } = useTransactions(page, limit);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <TableContainer component={Paper}>
@@ -36,7 +34,7 @@ export default function TabelTransaction() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.data.transactions.map((row: Transaction, index: number) => (
+          {data?.map((row: Transaction, index: number) => (
             <TableRow key={row.id}>
               <TableCell>{(page - 1) * limit + index + 1}</TableCell>
               <TableCell>{row.transactionCode}</TableCell>
