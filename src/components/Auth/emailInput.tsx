@@ -14,6 +14,7 @@ export default function EmailInput({ value, onChange, required }: EmailInputProp
       label="Email"
       type="email"
       value={value}
+      placeholder="owner@stokflow.com"
       onChange={onChange}
       required={required}
       InputProps={{

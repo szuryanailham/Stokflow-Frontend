@@ -61,6 +61,7 @@ export default function Login() {
         {/* Form */}
         <Box component="form" onSubmit={handleSubmit}>
           <EmailInput value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} required />
+
           <PasswordInput label="Password" value={password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} required />
 
           <Button type="submit" variant="contained" fullWidth sx={{ backgroundColor: "#6358DC", mt: 2, py: 1.2 }} disabled={loginMutation.isPending}>

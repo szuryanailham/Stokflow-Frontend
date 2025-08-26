@@ -30,6 +30,7 @@ export default function PasswordInput({ label, value, onChange, required = false
       type={showPassword ? "text" : "password"}
       value={value}
       onChange={onChange}
+      placeholder="testpassword123"
       required={required}
       slotProps={{
         input: {
