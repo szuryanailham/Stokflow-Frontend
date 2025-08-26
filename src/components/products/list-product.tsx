@@ -18,7 +18,7 @@ export default function ProductsTable() {
   const total: number = totalData?.total ?? 0;
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Failed to load products</p>;
+  if (isError) return <p>Failed to load products data</p>;
 
   return (
     <Paper>
