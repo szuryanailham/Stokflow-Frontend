@@ -1,12 +1,27 @@
+"use client";
+
 import { Box, Typography } from "@mui/material";
 import SearchInput from "./searchInput";
 import NotificationButton from "./notification";
 import HeaderProfile from "./headerProfile";
 
 import { HeaderProps } from "@/types/header/HeaderProps";
+import { usePathname } from "next/navigation";
 
 export default function Header({ user }: HeaderProps) {
   const { data } = user;
+  const pathname = usePathname();
+
+  // mapping route ke title
+  const pageTitleMap: Record<string, string> = {
+    "/dashboard": "Dashboard",
+    "/dashboard/products": "Product",
+    "/dashboard/products/create": "Create Product",
+    "/dashboard/users": "Users",
+  };
+
+  const title = pageTitleMap[pathname] || "Dashboard";
+
   return (
     <Box
       component="header"
@@ -21,7 +36,7 @@ export default function Header({ user }: HeaderProps) {
     >
       {/* Title */}
       <Typography component="h2" variant="h5" sx={{ fontWeight: 600 }}>
-        Dashboard
+        {title}
       </Typography>
 
       {/* Search di tengah */}

@@ -18,7 +18,7 @@ export default function TabelTransaction() {
   const { data, isLoading } = useTransactions(page, limit);
 
   if (isLoading) return <p>Loading...</p>;
-
+  console.log(typeof data);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="transaction table">

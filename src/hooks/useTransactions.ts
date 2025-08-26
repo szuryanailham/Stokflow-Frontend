@@ -8,8 +8,6 @@ export function useTransactions(page: number, limit: number) {
     queryKey: ["transactions", page, limit],
     queryFn: async () => {
       const { data } = await api.get<TransactionResponse>(`/api/transactions?page=${page}&limit=${limit}`);
-
-      // Ambil hanya array transactions
       return data.data.transactions.transactions;
     },
   });

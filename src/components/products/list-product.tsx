@@ -3,24 +3,22 @@ import * as React from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, TablePagination } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useProducts } from "@/hooks/useProduct";
-import { Product } from "@/types/products/products"; // pastikan kamu punya type ini
+import { useProducts, useTotalProducts } from "@/hooks/useProduct";
+import { Product } from "@/types/products/products";
 
 export default function ProductsTable() {
-  const [page, setPage] = React.useState(0); // MUI mulai dari 0
+  const [page, setPage] = React.useState(0); // MUI pagination mulai dari 0
   const [limit, setLimit] = React.useState(10);
 
-  const { data, isLoading, isError } = useProducts(page + 1, limit);
+  const { data: productData, isLoading, isError } = useProducts(page + 1, limit);
+  const { data: totalData } = useTotalProducts();
 
-  // type fallback kalau data belum ada
-
-  const products: Product[] = data?.products ?? [];
-  const total: number = data?.total ?? 0;
+  // Fallback agar map aman
+  const products: Product[] = productData ?? [];
+  const total: number = totalData?.total ?? 0;
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Failed to load products</p>;
-
-  console.log(products);
 
   return (
     <Paper>
@@ -38,7 +36,7 @@ export default function ProductsTable() {
           </TableHead>
           <TableBody>
             {products.map((row, index) => (
-              <TableRow key={row.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+              <TableRow key={row.id}>
                 <TableCell>{page * limit + index + 1}</TableCell>
                 <TableCell>{row.sku}</TableCell>
                 <TableCell>{row.productName}</TableCell>
@@ -79,6 +77,7 @@ export default function ProductsTable() {
           setLimit(parseInt(e.target.value, 10));
           setPage(0); // reset ke halaman pertama
         }}
+        rowsPerPageOptions={[5, 10, 20]}
       />
     </Paper>
   );

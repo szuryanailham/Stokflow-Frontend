@@ -14,7 +14,6 @@ import ConvertRupiah from "../lib/convertRupiah";
 export default function DashboardPage() {
   const { data: totalProducts } = useTotalProducts();
   const { data: transactionStats } = useTransactionStats();
-  console.log();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={1}>

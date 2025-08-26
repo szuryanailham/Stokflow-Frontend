@@ -14,7 +14,23 @@ export type Product = {
 };
 
 // Tipe untuk wrapper products
-export type ProductsResponse = {
-  products: Product[];
-  total: number;
-};
+
+// export interface ProductResponse {
+//   products: Product[];
+//   total: number;
+//   pagination: {
+//     page: number;
+//     limit: number;
+//   };
+// }
+
+export interface ProductsResponse {
+  data: {
+    products: Product[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+    };
+  };
+}
