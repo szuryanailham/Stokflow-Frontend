@@ -53,3 +53,22 @@ export function useDeleteProduct() {
     },
   });
 }
+
+async function updateProduct(id: number, updatedData: Product) {
+  const { data } = await api.put(`/api/products/${id}`, updatedData);
+  return data;
+}
+
+export function useUpdateProduct() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, updatedData }: { id: number; updatedData: Product }) => updateProduct(id, updatedData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+    onError: (error) => {
+      console.error("Update failed:", error);
+    },
+  });
+}

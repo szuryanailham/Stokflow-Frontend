@@ -12,6 +12,7 @@ export default function ProductsTable() {
 
   const { data: productData, isLoading, isError } = useProducts(page + 1, limit);
   const { data: totalData } = useTotalProducts();
+
   const { mutate: deleteProduct, isPending: isDeleting } = useDeleteProduct();
   const handleDelete = (id: number) => {
     if (confirm("Are you sure you want to delete this product?")) {
