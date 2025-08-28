@@ -13,16 +13,15 @@ export type Product = {
   updatedAt: string;
 };
 
-// Tipe untuk wrapper products
-
-// export interface ProductResponse {
-//   products: Product[];
-//   total: number;
-//   pagination: {
-//     page: number;
-//     limit: number;
-//   };
-// }
+export type CreateProductInput = {
+  sku: string;
+  productName: string;
+  description: string;
+  purchasePrice: number;
+  sellingPrice: number;
+  currentStockQty: number;
+  minStockThreshold?: number;
+};
 
 export interface ProductsResponse {
   data: {
@@ -34,3 +33,10 @@ export interface ProductsResponse {
     };
   };
 }
+
+export type ResponseCreateProduct = {
+  message: string;
+  data: {
+    product: Product;
+  };
+};

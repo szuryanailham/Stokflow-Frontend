@@ -8,7 +8,7 @@ import AddIcon from "@mui/icons-material/Add";
 import DiagramTransaction from "@/components/home/diagaramTransaction";
 import TabelTransaction from "@/components/home/tabelTransaction";
 import CardNotification from "@/components/home/cardNotification";
-import { useTotalProducts } from "@/hooks/useProduct";
+import { useTotalProducts } from "@/hooks/products/useProduct";
 import { useTransactionStats } from "@/hooks/useTransactions";
 import ConvertRupiah from "../lib/convertRupiah";
 export default function DashboardPage() {

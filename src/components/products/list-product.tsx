@@ -3,23 +3,27 @@ import * as React from "react";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, TablePagination } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useProducts, useTotalProducts } from "@/hooks/useProduct";
+import { useProducts, useTotalProducts, useDeleteProduct } from "@/hooks/products/useProduct";
 import { Product } from "@/types/products/products";
 
 export default function ProductsTable() {
-  const [page, setPage] = React.useState(0); // MUI pagination mulai dari 0
+  const [page, setPage] = React.useState(0);
   const [limit, setLimit] = React.useState(10);
 
   const { data: productData, isLoading, isError } = useProducts(page + 1, limit);
   const { data: totalData } = useTotalProducts();
-
+  const { mutate: deleteProduct, isPending: isDeleting } = useDeleteProduct();
+  const handleDelete = (id: number) => {
+    if (confirm("Are you sure you want to delete this product?")) {
+      deleteProduct(id);
+    }
+  };
   // Fallback agar map aman
   const products: Product[] = productData ?? [];
-  const total: number = totalData?.total ?? 0;
+  const total: number = totalData ?? 0;
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Failed to load products data</p>;
-
   return (
     <Paper>
       <TableContainer>
@@ -56,7 +60,7 @@ export default function ProductsTable() {
                   <IconButton color="primary" size="small">
                     <EditIcon />
                   </IconButton>
-                  <IconButton color="error" size="small">
+                  <IconButton color="error" size="small" onClick={() => handleDelete(row.id)} disabled={isDeleting}>
                     <DeleteIcon />
                   </IconButton>
                 </TableCell>
